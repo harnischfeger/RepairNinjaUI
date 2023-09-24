@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+//import AppLoading from "expo-app-loading";  
+import { useFonts } from "expo-font";
+import Rootstack from "./navigators/RootStack";
+//import * as SplashScreen from 'expo-splash-screen';
+import Login from "./screens/Login";
+import React from "react";
 
 export default function App() {
+let [fontsLoaded] = useFonts({
+  "SimSun": require("./assets/fonts/SimSun-ExtB.ttf")
+});
+
+ if (!fontsLoaded) {
+  return null; 
+ }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Rootstack/>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
