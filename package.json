@@ -4,6 +4,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
+    "ts:check": "tsc",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
@@ -12,6 +13,7 @@
     "@react-native-community/datetimepicker": "^7.2.0",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/stack": "^6.3.17",
+    "@types/styled-components": "^5.1.28",
     "axios": "^1.5.0",
     "expo": "~49.0.11",
     "expo-status-bar": "~1.6.0",
@@ -20,7 +22,7 @@
     "moment": "^2.29.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.72.4",
+    "react-native": "^0.72.5",
     "react-native-element-dropdown": "^2.10.0",
     "react-native-gesture-handler": "^2.12.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
@@ -29,12 +31,12 @@
     "react-native-screens": "~3.22.0",
     "react-native-simple-dialogs": "^2.0.1",
     "react-router-dom": "^6.16.0",
-    "styled-components": "^5.2.0",
+    "styled-components": "^5.3.11",
     "yup": "^1.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@types/react": "~18.2.14",
+    "@types/react": "^18.2.25",
     "typescript": "^5.1.3"
   },
   "private": true
