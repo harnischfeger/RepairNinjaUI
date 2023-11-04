@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 
 import { colors } from "../colors";
 import BoldText from "../Texts/BoldText";
-import { GestureResponderEvent, StyleProp, TextStyle, ViewStyle } from "react-native";
+import { TouchableOpacity, StyleSheet, StyleProp, TextStyle, ViewStyle } from "react-native";
 
 const ButtonWrapper = styled.View`
 width: 100%; 
@@ -12,34 +12,38 @@ justifyContent: center;
 align-items: center;
 `;
 
-const CRUDButtonView = styled.TouchableOpacity `
-text-align: center;
-width: 70px;
-border-radius:2px;  
-justifyContent: center;
-align-items: center;
-height: 50px;  
-fontColor: white; 
-`;
- 
 //types
-interface CRUDButtonProps{
-    btnStyles?: StyleProp<ViewStyle>; 
-    onPress: ((event: GestureResponderEvent) => void) | undefined; 
-    textStyles?: StyleProp<TextStyle>; 
+type CRUDButtonProps={
     children: ReactNode; 
+    btnStyles?: StyleProp<ViewStyle>; 
+    onPress: () => any; 
+    textStyles?: StyleProp<TextStyle>; 
 }
 
 
 
-const CRUDButton : FunctionComponent<CRUDButtonProps> = (props) => {
+const CRUDButton = ({children, onPress, btnStyles}:CRUDButtonProps) => {
     return( 
         <ButtonWrapper>
-        <CRUDButtonView onPress={props.onPress} style={props.btnStyles}>
-            <BoldText textStyles={props.textStyles}>{props.children}</BoldText>
-        </CRUDButtonView>
+        <TouchableOpacity onPress ={onPress} style={[styles.button, btnStyles]}>
+            <BoldText textStyles={[styles.text]}>{children}</BoldText>
+        </TouchableOpacity>
         </ButtonWrapper>
     )
 }; 
 
 export default CRUDButton; 
+
+const styles = StyleSheet.create({
+    button: {
+        width: 70,
+        borderRadius:2,  
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 50
+    },
+    text:{
+        fontFamily: "SimSun",
+        color: colors.white
+    }
+})

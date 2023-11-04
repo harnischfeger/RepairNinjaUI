@@ -1,17 +1,15 @@
-import React, {FunctionComponent} from "react";
-import styled from "styled-components/native";
-
+import { Text } from "react-native";
 import { colors } from "../colors";
 
-const StyledText = styled.Text `
-font-size: 15px; 
-color: ${colors.black}; 
-font-family: SimSun; 
-`;
 
 import { TextProps } from "./types"; 
-const SmallText: FunctionComponent<TextProps> = (props) => {
-    return <StyledText style={props.textStyles}>{props.children}</StyledText>; 
+
+const SmallText = ({children, textStyles} : TextProps) => {
+    return <Text style={[{
+        color: colors.black,
+        fontWeight: "normal",
+        fontFamily: "SimSun"
+}, textStyles]}>{children}</Text>; 
 }; 
 
 export default SmallText; 

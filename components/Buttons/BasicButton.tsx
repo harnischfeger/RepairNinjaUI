@@ -1,10 +1,9 @@
-import React, {FunctionComponent} from "react";
 import styled from "styled-components/native";
 import { ReactNode } from "react";
 
 import { colors } from "../colors";
 import BoldText from "../Texts/BoldText";
-import { GestureResponderEvent, StyleProp, TextStyle, ViewStyle } from "react-native";
+import { TouchableOpacity, StyleSheet, StyleProp, TextStyle, ViewStyle } from "react-native";
 
 const ButtonWrapper = styled.View`
 width: 100%; 
@@ -12,36 +11,42 @@ justifyContent: center;
 align-items: center;
 `;
 
-const BasicButtonView = styled.TouchableOpacity `
-text-align: center;
-width: 300px;
-padding: 20px; 
-border-radius:20px;  
-justifyContent: center;
-align-items: center;
-height: 60px; 
-margin-top: 30px; 
-fontColor: white; 
-`;
- 
 //types
-interface BasicButtonProps{
-    btnStyles?: StyleProp<ViewStyle>; 
-    onPress: ((event: GestureResponderEvent) => void) | undefined; 
-    textStyles?: StyleProp<TextStyle>; 
+type BasicButtonProps = {
     children: ReactNode; 
+    btnStyles?: StyleProp<ViewStyle>; 
+    onPress: () => any; 
+    textStyles?: StyleProp<TextStyle>; 
 }
 
 
 
-const BasicButton : FunctionComponent<BasicButtonProps> = (props) => {
+const BasicButton = ({children, onPress, btnStyles}: BasicButtonProps) => {
     return( 
         <ButtonWrapper>
-        <BasicButtonView onPress={props.onPress} style={props.btnStyles}>
-            <BoldText textStyles={props.textStyles}>{props.children}</BoldText>
-        </BasicButtonView>
+        <TouchableOpacity onPress ={onPress} style={[styles.button, btnStyles]}>
+            <BoldText textStyles={[styles.text]}>{children}</BoldText>
+        </TouchableOpacity>
         </ButtonWrapper>
     )
 }; 
 
 export default BasicButton; 
+
+const styles = StyleSheet.create({
+    button: {
+        textAlign: 'center',
+        width: 300,
+        padding: 20,
+        borderRadius:20,  
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 60, 
+        marginTop: 30, 
+       
+    },
+    text:{
+        color: colors.white,
+        fontFamily: "SimSun"
+    }
+})

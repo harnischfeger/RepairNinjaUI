@@ -1,10 +1,9 @@
-import React, {FunctionComponent} from "react";
 import styled from "styled-components/native";
 import { ReactNode } from "react";
 
 import { colors } from "../colors";
 import BoldText from "../Texts/BoldText";
-import { GestureResponderEvent, StyleProp, TextStyle, ViewStyle } from "react-native";
+import { TouchableOpacity, StyleSheet, StyleProp, TextStyle, ViewStyle } from "react-native";
 
 const ButtonWrapper = styled.View`
 width: 100%; 
@@ -12,36 +11,41 @@ justifyContent: center;
 align-items: center;
 `;
 
-const ButtonViewSubmit = styled.TouchableOpacity `
-background-color: ${colors.submitBtn}; 
-text-align: center;
-width: 300px;
-padding: 20px; 
-border-radius:20px;  
-justifyContent: center;
-align-items: center;
-height: 60px; 
-margin-top: 30px; 
-`;
- 
 //types
-interface SubmitButtonProps{
-    btnStyles?: StyleProp<ViewStyle>; 
-    onPress: ((event: GestureResponderEvent) => void) | undefined; 
-    textStyles?: StyleProp<TextStyle>; 
+type SubmitButtonProps = {
     children: ReactNode; 
+    style?: StyleProp<ViewStyle>; 
+    onPress: () => any; 
+    textStyles?: StyleProp<TextStyle>;  
 }
 
 
 
-const SubmitButton : FunctionComponent<SubmitButtonProps> = (props) => {
+const SubmitButton = ({children, onPress}: SubmitButtonProps ) => {
     return( 
         <ButtonWrapper>
-        <ButtonViewSubmit onPress={props.onPress} style={props.btnStyles}>
-            <BoldText textStyles={props.textStyles}>{props.children}</BoldText>
-        </ButtonViewSubmit>
+         <TouchableOpacity onPress ={onPress} style={styles.button}>
+            <BoldText textStyles={[styles.text]}>{children}</BoldText>
+        </TouchableOpacity>
         </ButtonWrapper>
     )
 }; 
 
 export default SubmitButton; 
+
+const styles = StyleSheet.create({
+    button: {
+        textAlign: 'center',
+        width: 300,
+        padding: 20,
+        borderRadius:20,  
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 60, 
+        marginTop: 30, 
+        backgroundColor: colors.submitBtn
+    },
+    text:{
+        fontFamily: "SimSun"
+    }
+})
